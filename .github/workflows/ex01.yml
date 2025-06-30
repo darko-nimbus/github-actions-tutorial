@@ -22,7 +22,7 @@ jobs:
         # Replace spaces with + for URL encoding
         AUTHOR_ENCODED=$(echo "$AUTHOR" | sed 's/ /+/g')
         echo "Fetching data for author: $AUTHOR"
-        curl -s "https://openlibrary.org/search/authors.json?q=${AUTHOR_ENCODED}" > "ex01/${AUTHOR_ENCODED}_$(date +%F)-authors.json"
+        curl -s "https://openlibrary.org/search/authors.json?q=${AUTHOR_ENCODED}" > "ex01/$(date +%F)-${AUTHOR}.json"
     
     - name: Commit and push changes
       run: |-
