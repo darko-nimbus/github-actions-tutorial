@@ -14,7 +14,7 @@ Hands-on tutorial covering GitHub Actions for automating data workflows, testing
 This repository contains 3 exercises to help you practice GitHub Actions:
 - `ex01`: Ingesting data on a schedule
 - `ex02`: Automated testing using Pytest
-- `ex03`: CI using dbt
+- `ex03`: dbt CI/CD
 
 Each exercise is in its own sub-folder. Inside each sub-folder, you'll find:
 - Hands-on Tutorial
