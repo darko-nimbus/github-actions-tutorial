@@ -86,16 +86,28 @@ After modifying the file, commit and push to the main branch.
 
 ---
 
-## Step 9: Set Up Branch Protection Rules
-You may notice that, despite the workflow failing, the code was still pushed. This is undesirable. 
+## Optional: Set Up Branch Protection Rules
+When a workflow fails, you might notice that the code still gets pushed to your repository. This creates a problem—broken code ends up in your main branch despite failing tests.
 
-To prevent pushes or merges to main when tests fail, configure a branch protection rule:
-- Navigate to `Settings > Branches` in your GitHub repository.
-- Under Branch protection rules, click Add rule or edit the existing rule for main.
-- Configure the following:
-    - Branch name pattern: main
-    - Require a pull request before merging: Enable this to block direct pushes to main.
-    - Require status checks to pass before merging: Enable this and select the test job (it appears after the workflow runs once).
-- Require branches to be up to date before merging: Enable this to ensure the latest tests run.
+To prevent this, you need to set up a branch protection rule that blocks pushes and merges when tests fail.
 
-After saving the rule, revert `src/calculator.py` to its last working version, then introduce the bug again and attempt to push to main. If configured correctly, the push should be blocked due to the failing tests.
+> Note: You need admin access to create branch protection rules. If you want to follow along, try this in a repository you own.
+
+Setting up the protection rule:
+- Navigate to `Settings > Branches > Rules > Rulesets` in your GitHub repository, then click `New ruleset > New branch ruleset`.
+
+- Configure these settings:
+  - Ruleset Name: pytest
+  - Enforcement status: Active
+  - Target branches: Add target > Include default branch
+
+- Under Rules, check `Require status checks to pass`, then:
+  - Add checks: Run Pytest
+  - Any source: GitHub Actions
+  - Click Create
+
+> Important: "Run Pytest" is just an example name—you can use any name as long as it matches your workflow's job name.
+
+Once you've saved the rule, revert `src/calculator.py` to its last working version, then reintroduce the bug and try pushing to main. If everything is configured correctly, the push will be blocked because the tests are failing.
+
+This ensures that only code that passes all tests can make it into your main branch, keeping your codebase stable and reliable.
