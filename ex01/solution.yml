@@ -1,13 +1,12 @@
 name: ex01
 
 on:
-  push:
   workflow_dispatch:
   schedule:
     - cron:  '0 8 * * *' # every day at 8am
 
 jobs:
-  scheduled:
+  author_info:
     runs-on: ubuntu-latest
     steps:
     - name: Check out this repo

@@ -17,7 +17,6 @@ This repository contains 3 exercises to help you practice GitHub Actions:
 - `ex03`: CI using dbt
 
 Each exercise is in its own sub-folder. Inside each sub-folder, you'll find:
-- Instructions
 - Hands-on Tutorial
 - Solution
 
