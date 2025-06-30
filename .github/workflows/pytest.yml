@@ -26,4 +26,5 @@ jobs:
 
     - name: Run tests
       run: |
-        pytest ex02/tests/test_calculator.py --verbose
+        cd ex02
+        pytest tests/test_calculator.py --verbose
