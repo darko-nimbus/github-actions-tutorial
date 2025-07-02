@@ -19,13 +19,7 @@ jobs:
       - name: Convert to PDF
         uses: KoharaKazuya/marp-cli-action@v4
         with:
-          args: slides/github-actions.md -o slides/github-actions.pdf
-
-      # Convert Markdown to PPTX using Marp CLI Action
-      - name: Convert to PPTX
-        uses: KoharaKazuya/marp-cli-action@v4
-        with:
-          args: slides/github-actions.md -o slides/github-actions.pptx
+          args: --pdf slides/*.md
 
       # Commit and push the generated PDF and PPTX files
       - name: Commit generated files
