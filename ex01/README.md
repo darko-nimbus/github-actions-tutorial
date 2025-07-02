@@ -1,4 +1,4 @@
-# Exercise 1: Scheduled Data Scraping
+[text](../.github)# Exercise 1: Scheduled Data Scraping
 ## 🧱 Step-by-Step Guide
 
 This guide walks through building a simple GitHub Actions workflow that fetches author data from the Open Library API on a schedule. While GitHub Actions isn't typically used for full data pipelines, it's perfectly reasonable for small-scale tasks like polling an API or running a lightweight scraper. Plus, GitHub's free tier is sufficient for these types of workflows.
