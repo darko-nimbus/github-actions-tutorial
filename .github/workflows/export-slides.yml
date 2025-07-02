@@ -1,0 +1,37 @@
+name: Export Marpit Slides
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  convert-slides:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Convert Markdown to PDF using Marp CLI Action
+      - name: Convert to PDF
+        uses: KoharaKazuya/marp-cli-action@v4
+        with:
+          args: slides/github-actions.md -o slides/github-actions.pdf
+
+      # Convert Markdown to PPTX using Marp CLI Action
+      - name: Convert to PPTX
+        uses: KoharaKazuya/marp-cli-action@v4
+        with:
+          args: slides/github-actions.md -o slides/github-actions.pptx
+
+      # Commit and push the generated PDF and PPTX files
+      - name: Commit generated files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add slides/github-actions.pdf slides/github-actions.pptx
+          git commit -m "Add generated PDF and PPTX slides" || echo "No changes to commit"
+          git push
