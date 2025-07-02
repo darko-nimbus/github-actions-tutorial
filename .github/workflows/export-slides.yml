@@ -19,13 +19,13 @@ jobs:
       - name: Convert to PDF
         uses: KoharaKazuya/marp-cli-action@v4
         with:
-          args: --pdf slides/*.md
+          args: --pdf slides/github-actions.md -o slides/github-actions.pdf
 
       # Commit and push the generated PDF and PPTX files
       - name: Commit generated files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add slides/github-actions.pdf slides/github-actions.pptx
+          git add slides/github-actions.pdf
           git commit -m "Add generated PDF and PPTX slides" || echo "No changes to commit"
           git push
