@@ -1,4 +1,4 @@
-name: CI_action
+name: dbt_CI
 
 on:
   workflow_dispatch:
