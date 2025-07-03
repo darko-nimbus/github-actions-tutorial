@@ -10,3 +10,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: echo "Hello"
+            - uses: actions/checkout@v4
+            - run: |
+                tree
