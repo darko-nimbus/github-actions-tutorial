@@ -1,0 +1,12 @@
+name: GitHub Actions Demo
+
+# This is the trigger
+on:
+    workflow_dispatch:
+
+# This is the job
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello"
