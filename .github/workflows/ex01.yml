@@ -1,0 +1,29 @@
+name: Exercise 1
+
+# This is the trigger
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0 9 * * *"
+
+# This is the job
+jobs:
+    author_info:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out this repo
+              uses: actions/checkout@v4
+            - name: Fetch author name from secrets
+              env:
+                AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+              run: |-
+                AUTHOR="${AUTHOR_NAME}"
+                AUTHOR_ENCODED=$(echo "$AUTHOR" | sed 's/ /+/g')
+                curl -s "https://openlibrary.org/search/authors.json?q=${AUTHOR_ENCODED}" > "ex01/$(date +%F)-${AUTHOR}.json"
+            - name: Fetch author name from secrets
+              run: |-
+                git config --local user.email "action@github.com"
+                git config --local user.name "GitHub Action"
+                git add ex01/*.json
+                git diff --staged --quiet || git commit -m "Update author data - $(date +%F)"
+                git push
