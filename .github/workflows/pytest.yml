@@ -3,8 +3,11 @@ name: Run Pytest
 # This is the trigger
 on:
     workflow_dispatch:
-    push: [main]
-    pull_request: [main]
+    push: 
+      branches: [main]
+    pull_request: 
+      branches: [main]
+
 # This is the job
 jobs:
     author_info:
@@ -24,4 +27,3 @@ jobs:
             - name: Run tests
               run: |
                 pytest tests/test_calculator.py --verbose
-                
