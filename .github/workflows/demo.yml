@@ -9,7 +9,9 @@ jobs:
     Build:
         runs-on: ubuntu-latest
         steps:
-            - run: echo "Hello"
+            - run: |
+                echo "Triggered by ${{ github.event_name }}"
             - uses: actions/checkout@v4
             - run: |
+                echo "Contents of the repo called ${{ github.repository }}"
                 tree
